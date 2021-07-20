@@ -52,6 +52,18 @@ public class ConverterOutput {
         return this;
     }
 
+    public ConverterOutput newLine(String newLinePrefix) {
+        buffer.append("\n");
+        buffer.append(newLinePrefix);
+        return this;
+    }
+
+    public int getCurrentLineCharCount() {
+        int indentationBegin = buffer.lastIndexOf("\n");
+        // Gives correct result even when indentationBegin is -1
+        return buffer.length() - indentationBegin - 1;
+    }
+
     public ConverterOutput newLine() {
         int indentationBegin = buffer.lastIndexOf("\n");
         int indentationEnd = -1;
@@ -67,10 +79,9 @@ public class ConverterOutput {
 
         if (indentationBegin != -1 && indentationEnd != -1) {
             String indent = buffer.substring(indentationBegin, indentationEnd);
-            buffer.append("\n");
-            buffer.append(indent);
+            newLine(indent);
         } else {
-            buffer.append("\n");
+            newLine("");
         }
 
         return this;
@@ -117,6 +128,10 @@ public class ConverterOutput {
         }
 
         return result.toString();
+    }
+
+    public char getIndentationChar() {
+        return indentationChar;
     }
 
     public void setIndentationChar(char indentationChar) {

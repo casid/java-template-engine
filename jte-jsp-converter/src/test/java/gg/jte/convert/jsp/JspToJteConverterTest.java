@@ -137,6 +137,13 @@ class JspToJteConverterTest {
     }
 
     @Test
+    void jspWithAlreadyConvertedTagParametersOnSeparateLines() {
+        givenUsecase("jspWithAlreadyConvertedTagParametersOnSeparateLines");
+        whenJspTagIsConverted("usage.jsp", "usage.jte");
+        thenConversionIsAsExpected();
+    }
+
+    @Test
     void simpleTagWithSetProperty() {
         givenUsecase("simpleTagWithSetProperty");
         whenJspTagIsConverted("simple.tag", "tag/simple.jte");

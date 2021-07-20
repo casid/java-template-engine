@@ -2,6 +2,9 @@
 
 @param String title
 
-@tag.withBody(headline = title, bodyContent = @`
+@tag.withBody(
+    headline = title,
+    bodyContent = @`
     <p>This is the body, for title ${title}</p>
-`)
+`
+)
